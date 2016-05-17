@@ -5,19 +5,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
-
+      body {
+        margin: 0px;
+        overflow: hidden;
+      }
+      #webglviewer {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
     </style>
   </head>
   <body>
+    <div id="webglviewer"></div>
+
     <script src="./js/three.min.js"></script>
     <script src="./js/StereoEffect.js"></script>
     <script src="./js/DeviceOrientationControls.js"></script>
     <script src="./js/OrbitControls.js"></script>
     <script src="./js/helvetiker_regular.typeface.js"></script>    
     <script>
+      var scene,
+      camera, 
+      renderer,
+      element,
+      container,
+      effect,
+      controls,
+      clock,
+
+      particles = new THREE.Object3D(),
+      totalParticles = 200,
+      maxParticleSize = 200,
+      particleRotationSpeed = 0,
+      particleRotationDeg = 0,
+      lastColorRange = [0, 0.3],
+      currentColorRange = [0, 0.3],  
 
       init();
-
+      
       function init() {
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.001, 700);
@@ -81,6 +109,24 @@
         var floor = new THREE.Mesh(geometry, floorMaterial);
         floor.rotation.x = -Math.PI / 2;
         scene.add(floor);
+
+        var particleTexture = THREE.ImageUtils.loadTexture('textures/particle.png'),
+        spriteMaterial = new THREE.SpriteMaterial({
+          map: particleTexture,
+          color: 0xffffff
+        });
+
+        for (var i = 0; i < totalParticles; i++) {
+          var sprite = new THREE.Sprite(spriteMaterial);
+          sprite.scale.set(64, 64, 1.0);
+          sprite.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.75);
+          sprite.position.setLength(maxParticleSize * Math.random());
+          sprite.material.blending = THREE.AdditiveBlending;
+          particles.add(sprite);
+        }  
+
+        particles.position.y = 70;
+        scene.add(particles);
       }
 
 
