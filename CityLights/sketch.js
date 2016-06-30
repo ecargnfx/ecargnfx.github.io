@@ -36,6 +36,10 @@ function draw() {
   
   for(var i=0; i < circle.length; i++){
     circle[i].display();
+    // if index value > 100, splice index by 1 (takes away the first index)
+    if (circle.length > 300){
+      circle.splice(i,1);
+    }
   }
   
   for(var i=0; i < square.length; i++){
@@ -44,11 +48,11 @@ function draw() {
       square[i].col();
     }
     // if index value > 100, splice index by 1 (takes away the first index)
-    if (square[i] > 100){
+    if (square.length > 300){
       square.splice(i,1);
     }
   }   
-  
+  print(circle.length);
 }
 
 function Square(x, y, w, h){
