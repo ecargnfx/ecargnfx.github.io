@@ -2,7 +2,7 @@
    Base Styles, Bootstrap Modifications & Fonts Import
    ========================================================================== */
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 
 
 ::-moz-selection {
@@ -60,7 +60,7 @@
 
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 16px;
 
