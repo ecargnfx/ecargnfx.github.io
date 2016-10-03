@@ -1,0 +1,284 @@
+/* ==========================================================================
+   Base Styles, Bootstrap Modifications & Fonts Import
+   ========================================================================== */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+::-moz-selection {
+    background: #8fe6f7;
+    color: #ffffa5;
+    text-shadow: none;
+}
+
+::selection {
+    background: #8fe6f7;
+    color: #ffffa5;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.centered {
+	text-align: center
+}
+
+.pl0 {
+  padding-left: 0;
+}
+
+.mt {
+	margin-top: 80px;
+}
+
+.mts {
+  margin-top: 20px;
+}
+
+.mtm {
+  margin-top: 40px;
+}
+
+.mb {
+	margin-bottom: 80px;
+}
+
+/* ==========================================================================
+   General styles
+   ========================================================================== */
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+    color: #4a4a4a;
+}
+
+.navbar-brand {
+	font-weight: 700;
+}
+
+.navbar-default .navbar-brand {
+	color: #1abc9c;
+}
+
+.navbar-default {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	color: #1abc9c;
+	background-color: transparent;
+	border-bottom: 2px solid #1abc9c
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #1abc9c;
+}
+
+/* ==========================================================================
+   Wrap Sections
+   ========================================================================== */
+#headerwrap {
+  margin: 0px;
+  overflow: hidden;
+  width: 100%;
+  min-height: 700px;
+  background: #11e8bb; /* Old browsers */
+  background: -moz-linear-gradient(top,  #11e8bb 0%, #8200c9 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #11e8bb 0%,#8200c9 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #11e8bb 0%,#8200c9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+#headerwrap .container {
+  position: absolute;
+  padding-top: 250px;
+  text-align:center;
+  width: 100%;
+
+/*	background: url(../img/back.jpg) no-repeat center top;
+	margin-top: -70px;
+	padding-top: 250px;
+	text-align:center;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 650px;
+	width: 100%;
+	
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+}
+
+#headerwrap h1 {
+	color:#ffffff;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	letter-spacing: 4px;
+	font-size: 80px;
+	font-weight: bold;
+}
+
+#headerwrap h4 {
+	font-weight: 400;
+	color: #ffffff
+}
+
+#social {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #f2f2f2;
+}
+
+#social i {
+	font-size: 40px;
+	color: #4a4a4a
+}
+
+#social i:hover {
+	color: #1abc9c
+}
+
+#footerwrap {
+	padding-top: 70px;
+	padding-bottom: 50px;
+	background-color: #2f2f2f;
+}
+
+#footerwrap p {
+	color: #aaa;
+	margin-left: 10px;
+}
+
+.social li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+.social .fa {
+  font-size: 1.5em;
+  color: #aaa;
+}
+
+#cover {
+  padding-top: 250px;
+  width: 100%;
+  min-height: 650px;
+  background-color: rgba(0,0,0,.7);
+}
+#workwrap {	
+	background: url(../img/brainpaint.jpg) no-repeat center top;
+  margin-top: -70px;
+	text-align:center;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 650px;
+	width: 100%;
+	
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#workwrap h1 {
+	color:#ffffff;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	letter-spacing: 4px;
+	font-size: 80px;
+	font-weight: bold;
+}
+
+#workwrap h4 {
+	font-weight: 400;
+	color: #ffffff
+}
+
+
+#works p {
+  margin-top: 20px;
+  color: #999;
+}
+
+#aboutwrap {	
+	background: url(../img/about.jpg) no-repeat center top;
+	margin-top: -70px;
+	padding-top: 250px;
+	text-align:center;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 550px;
+	width: 100%;
+	
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* Gallery */
+.gallery {
+	margin-top: 30px;
+}
+
+.gallery img:hover {
+	opacity: 0.4;
+}
+
+
+/* Overrides */
+.btn {
+  border-radius: 0;
+}
+
+.btn-lg {
+  background-color: transparent;
+}
+
+.btn-default a {
+  color: #428bca;
+  font-weight: 700;
+}
+/*
+.btn-default a:hover {
+  color: #5b97f7;
+  font-weight: 700;
+}*/

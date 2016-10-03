@@ -1,50 +1,141 @@
-<html>
-<head>
-  <title>Live Sites and Experiments</title>
-  <style type="text/css">
-    body {
-      color: #888;
-      list-style: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>Hi, I'm Grace</h1>
-  <!-- <h2>Live Sites</h2>
-  <ul>
-    <li>
-      <a href="http://javelin.com">Javelin</a> (HAML, SCSS, JS, Rails)
-    </li>
-    <li>
-      <a href="http://quickmvp.com">QuickMVP</a> (HAML, SCSS, JS, Rails)
-    </li>
-    <li>
-      <a href="https://www.leanstartupmachine.com/validationboard/">Validation Board</a> (HTML/CSS/JS)
-    </li>
-  </ul> -->
-  <h2>Experiments</h2>
-  <ul style="list-style-type:none; padding: 0">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta property="og:title" content="Grace Ng"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-    <li> 
-      <a href="/flicker"><img width="300px" src = "http://i.imgur.com/t2UfD6a.gif?1"/></a> 
-    </li>
-    <li> 
-      <a href="/CityLights"><img width="300px" src = "http://i.imgur.com/Sturcgn.gif?1"/></a> 
-    </li>
+    <title>Design Portfolio of Grace Ng</title>
 
-<!--     <li>
-      <a href="/AwayAtSea/index.html">AwayAtSea</a> (CSS Animation)
-    </li>
-    <li>
-      <a href="/socratic">Socratic Labs</a> (Parallax Scrolling)
-    </li>
-    <li>
-      <a href="#">Virtual Reality</a> (Three.js)
-    </li>
-    <li>
-      <a href="#">Generative Art</a> (Processing, HYPE)
-    </li> -->
-  </ul>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-</body>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="assets/js/threejs/three.js"></script>
+    <script src="assets/js/threejs/WebVR.js"></script>
+    <script src="assets/js/threejs/effects/VREffect.js"></script>
+    <script src="assets/js/threejs/effects/StereoEffect.js"></script>
+
+    <script src="assets/js/threejs/controls/VRControls.js"></script>
+    <script src="assets/js/threejs/controls/DeviceOrientationControls.js"></script>
+    <script src="assets/js/threejs/controls/OrbitControls.js"></script>
+
+    <script src="assets/js/bg.js"></script>
+
+
+  </head>
+
+  <body>
+
+    <!-- Static navbar 
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Grace</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#works">Works</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  -->  
+
+	<div id="headerwrap">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
+          <h1>Grace Ng</h1>
+					<h4>Designer & Builder</h4>
+				</div>
+			</div><! --/row -->
+	    </div> <!-- /container -->     
+	</div><! --/headerwrap -->
+	
+	<section id="works"></section>
+	<div class="container">
+		<div class="row centered mt mb">
+			<h1>Portfolio</h1>
+			
+			<div class="col-lg-4 col-md-4 col-sm-4 gallery">
+				<a href="work.html"><img src="assets/img/portfolio/folio04.png" class="img-responsive"></a>
+        <p>Brain Art Interface</p>
+			</div>
+      <div class="col-lg-4 col-md-4 col-sm-4 gallery">
+        <a href="web.html"><img src="assets/img/portfolio/folio02.png" class="img-responsive"></a>
+        <p>web experiences</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 gallery">
+        <a href="mobile.html"><img src="assets/img/portfolio/folio03.png" class="img-responsive"></a>
+        <p>mobile experiences</p>
+      </div>
+<!-- 			<div class="col-lg-4 col-md-4 col-sm-4 gallery">
+				<a href="work.html"><img src="http://i.imgur.com/t2UfD6a.gif?1" class="img-responsive"></a>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 gallery">
+				<a href="work.html"><img src="http://i.imgur.com/Sturcgn.gif?1" class="img-responsive"></a>
+        <p>mobile experiences</p>
+			</div>      
+			<div class="col-lg-4 col-md-4 col-sm-4 gallery">
+				<a href="work.html"><img src="assets/img/portfolio/folio04.png" class="img-responsive"></a>
+        <p>learning experiences</p>
+			</div> -->
+      
+		</div><! --/row -->
+	</div><! --/container -->	
+
+	<div id="footerwrap">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-4">
+					<p>gracenfx@gmail.com</p>
+				</div>
+			
+				<div class="col-lg-4 social">
+					<ul>
+            <li>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-github"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-tumblr"></i></a>
+            </li>
+          </ul>
+				</div>
+				<div class="col-lg-4">
+					<p>Based in San Francisco</p>
+				</div>
+			</div>
+		</div>
+	</div><! --/footerwrap -->
+	
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
 </html>
