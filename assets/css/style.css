@@ -54,6 +54,8 @@
 	margin-bottom: 80px;
 }
 
+
+
 /* ==========================================================================
    General styles
    ========================================================================== */
@@ -71,6 +73,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
     color: #4a4a4a;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+img { 
+  display: block; 
+  margin: 0 auto; 
 }
 
 .navbar-brand {
@@ -271,14 +283,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-lg {
   background-color: transparent;
+  color: #428bca;
 }
 
-.btn-default a {
-  color: #428bca;
-  font-weight: 700;
-}
 /*
 .btn-default a:hover {
   color: #5b97f7;
   font-weight: 700;
 }*/
+
+.my-slider li {
+  text-align: center;
+}
+
+.unslider-wrap {
+  height: 400px;
+}

@@ -2042,15 +2042,15 @@ fieldset[disabled] .btn {
   color: #428bca;
   background-color: none;
   border-color: #428bca;
-  border-width: 2px;
+  border-width: 1px;
 }
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #333;
-  border-color: #5b97f7;
+  color: #556c91;
+  border-color: #556c91;
 }
 .btn-default:active,
 .btn-default.active,
