@@ -226,9 +226,24 @@ img {
   min-height: 650px;
   background-color: rgba(0,0,0,.7);
 }
-#workwrap {	
-	background: url(../img/brainpaint.jpg) no-repeat center top;
-  margin-top: -70px;
+
+#javelin {
+  background: radial-gradient(#926eb8, #584c97);
+}
+#javelin h4 a {
+  color: #e53475;
+}
+#javelin h4 a:hover {
+  color: #f74a89;
+}
+#mobile {
+  background: url(../img/wireframes.jpg) no-repeat center top;
+}
+#future {
+  background: url(../img/brainpaint.jpg) no-repeat center top;
+}
+.workwrap {	
+	margin-top: -70px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
@@ -246,7 +261,7 @@ img {
     background-size: cover;
 }
 
-#workwrap h1 {
+.workwrap h1 {
 	color:#ffffff;
 	padding-top: 10px;
 	padding-bottom: 20px;
@@ -255,9 +270,10 @@ img {
 	font-weight: bold;
 }
 
-#workwrap h4 {
+.workwrap h4 {
 	font-weight: 400;
-	color: #ffffff
+	color: rgba(255,255,255,0.6);
+  line-height: 1.8em;
 }
 
 
