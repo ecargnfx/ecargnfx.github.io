@@ -2,7 +2,7 @@
    Base Styles, Bootstrap Modifications & Fonts Import
    ========================================================================== */
 
-@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Lato|Libre+Baskerville:400i|Oswald);
 
 
 ::-moz-selection {
@@ -37,6 +37,15 @@
 .pl0 {
   padding-left: 0;
 }
+.pr0 {
+  padding-right: 0;
+}
+.ml0 {
+  margin-left: 0;
+}
+.mr0 {
+  margin-right: 0;
+}
 
 .mt {
 	margin-top: 80px;
@@ -69,6 +78,7 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 16px;
+    color: #78818A;
 
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
@@ -76,7 +86,63 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
-    color: #4a4a4a;
+    color: #78818A;
+}
+
+#responsive_headline {
+  font-family: 'Oswald', sans-serif;
+  color: #f0f0f0;
+  text-transform: uppercase;
+}
+
+
+@media only screen and (min-width: 1024px) {
+    h2#responsive_headline {
+      letter-spacing: 2px;
+    }
+  }
+
+h2 > span {
+  font-family: 'Libre Baskerville', serif;
+}
+
+
+
+.box-with-text {
+    background-image: -webkit-linear-gradient(0deg, rgba(17,232,187, 0.9) 0%, rgba(17,178,232, 0.9) 50%, rgba(17,232,187, 0.9) 100%);
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    background-size: 400px 100%;
+    background-repeat: repeat;
+    -webkit-animation: stripes 3s linear infinite;
+    animation: stripes 3s linear infinite;
+    -webkit-text-fill-color: transparent;
+} 
+
+/*.box-with-text:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0vmax 0vmax 10vmax 10vmax purple, 15vmax 0vmax 10vmax 10vmax violet, 30vmax 0vmax 10vmax 10vmax teal, 45vmax 0vmax 10vmax 10vmax orangered, 60vmax 0vmax 10vmax 10vmax yellow, 75vmax 0vmax 10vmax 10vmax crimson, 90vmax 0vmax 10vmax 10vmax yellowgreen, 105vmax 0vmax 10vmax 10vmax orange, 120vmax 0vmax 10vmax 10vmax darkturquoise, 135vmax 0vmax 10vmax 10vmax pink, 0vmax 15vmax 10vmax 10vmax steelblue, 15vmax 15vmax 10vmax 10vmax turquoise, 30vmax 15vmax 10vmax 10vmax coral, 45vmax 15vmax 10vmax 10vmax skyblue, 60vmax 15vmax 10vmax 10vmax darkviolet, 75vmax 15vmax 10vmax 10vmax gold, 90vmax 15vmax 10vmax 10vmax purple, 105vmax 15vmax 10vmax 10vmax violet, 120vmax 15vmax 10vmax 10vmax teal, 135vmax 15vmax 10vmax 10vmax orangered, 0vmax 30vmax 10vmax 10vmax yellow, 15vmax 30vmax 10vmax 10vmax crimson, 30vmax 30vmax 10vmax 10vmax yellowgreen, 45vmax 30vmax 10vmax 10vmax orange, 60vmax 30vmax 10vmax 10vmax darkturquoise, 75vmax 30vmax 10vmax 10vmax pink, 90vmax 30vmax 10vmax 10vmax steelblue, 105vmax 30vmax 10vmax 10vmax turquoise, 120vmax 30vmax 10vmax 10vmax coral, 135vmax 30vmax 10vmax 10vmax skyblue, 0vmax 45vmax 10vmax 10vmax darkviolet, 15vmax 45vmax 10vmax 10vmax gold, 30vmax 45vmax 10vmax 10vmax darkslateblue, 45vmax 45vmax 10vmax 10vmax purple, 60vmax 45vmax 10vmax 10vmax violet, 75vmax 45vmax 10vmax 10vmax teal, 90vmax 45vmax 10vmax 10vmax orangered, 105vmax 45vmax 10vmax 10vmax yellow, 120vmax 45vmax 10vmax 10vmax crimson, 135vmax 45vmax 10vmax 10vmax yellowgreen, 0vmax 60vmax 10vmax 10vmax orange, 15vmax 60vmax 10vmax 10vmax darkturquoise, 30vmax 60vmax 10vmax 10vmax pink, 45vmax 60vmax 10vmax 10vmax steelblue, 60vmax 60vmax 10vmax 10vmax turquoise, 75vmax 60vmax 10vmax 10vmax coral, 90vmax 60vmax 10vmax 10vmax skyblue, 105vmax 60vmax 10vmax 10vmax darkviolet, 120vmax 60vmax 10vmax 10vmax gold, 135vmax 60vmax 10vmax 10vmax darkslateblue;
+    -webkit-animation: shadows-cells 2.5s linear infinite;
+    animation: shadows-cells 2.5s linear infinite;
+}*/
+
+@-webkit-keyframes stripes {
+  100% {
+    background-position: -400px 0;
+  }
+}
+
+@keyframes stripes {
+  100% {
+    background-position: -400px 0;
+  }
+}
+
+h2 {
+  color: #BBC0C4;
 }
 
 p {
@@ -175,6 +241,10 @@ img {
   margin-top: 0;
 }
 
+.section span {
+  color: #ccc;
+}
+
 #social {
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -193,11 +263,11 @@ img {
 #footerwrap {
 	padding-top: 70px;
 	padding-bottom: 50px;
-	background-color: #2f2f2f;
+	background-color: #3E4B57;
 }
 
 #footerwrap p, #footerwrap a {
-	color: #aaa;
+	color: #838D96;
 	margin-left: 10px;
 }
 
@@ -213,7 +283,7 @@ img {
 
 .social .fa {
   font-size: 1.2em;
-  color: #aaa;
+  color: #838D96;
 }
 
 .social .fa:hover {
