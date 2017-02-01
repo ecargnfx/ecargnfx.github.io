@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Golden Dreams</title>
+        <meta charset="utf-8">
+        <meta property="og:title" content="Immersive Workshop"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="https://immersive.marpi.pl/assets/image.jpg"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                margin: 0px;
+                overflow: hidden;
+                background-color: #000000;
+            }
+        </style>
+    </head>
+    <body>
+
+        <audio id="myAudio" src="assets/music/goldendream.mp3" autoplay="true" preload autobuffer></audio>
+        
+        <script src="assets/js/threejs/three.js"></script>
+        <script src="assets/js/threejs/WebVR.js"></script>
+        <script src="assets/js/threejs/effects/VREffect.js"></script>
+        <script src="assets/js/threejs/effects/StereoEffect.js"></script>
+
+        <script src="assets/js/threejs/controls/VRControls.js"></script>
+        <script src="assets/js/threejs/controls/DeviceOrientationControls.js"></script>
+        <script src="assets/js/threejs/controls/OrbitControls.js"></script>
+
+        <script src="assets/js/threejs/helpers.js"></script>
+       
+
+        <script>
+            var camera, scene, renderer, material, geometry, geom, geom2;
+            var mobile = false;
+            var circle, skelet, ball, particle;
+            var material2;
+            var mat, meteor;
+            var asteroid;
+            var torusGeo;
+            init();
+            setup();
+            render();
+
+            function init() {
+
+                // renderer
+
+                renderer = new THREE.WebGLRenderer({antialias: true});
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                // scene
+
+                scene = new THREE.Scene();
+
+                // camera
+
+                camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.set(0, -8, 30);
+                camera.focalLength = camera.position.distanceTo(scene.position);
+                scene.add(camera)
+
+
+
+                // controls
+
+                controls = new THREE.OrbitControls(camera);
+                controls.autoRotate = true;
+
+                if (WEBVR.isAvailable() === true) {
+                    controls = new THREE.VRControls(camera);
+                    controls.standing = true;
+
+                    renderer = new THREE.VREffect(renderer);
+                    document.body.appendChild(WEBVR.getButton(renderer));
+                }
+
+                // events
+
+                window.addEventListener('deviceorientation', setOrientationControls, true);
+                window.addEventListener('resize', onWindowResize, false);
+                window.addEventListener( 'keydown', onKeyDown4, false );
+
+            }
+            function onKeyDown4 ( event ) {
+
+                switch( event.keyCode ) {
+                    case 48: /*0*/ goBack();
+                    }     
+            }
+
+            function goBack() {
+                window.history.back();
+            }
+
+            function setup() {
+                var cubeMap = getCubeMap(9)
+
+                var cubeShader = THREE.ShaderLib['cube'];
+                cubeShader.uniforms['tCube'].value = cubeMap;
+
+                var skyBoxMaterial = new THREE.ShaderMaterial({
+                    fragmentShader: cubeShader.fragmentShader,
+                    vertexShader: cubeShader.vertexShader,
+                    uniforms: cubeShader.uniforms,
+                    depthWrite: false,
+                    side: THREE.BackSide
+                });
+
+                var skyBox = new THREE.Mesh(new THREE.CubeGeometry(100, 100, 100), skyBoxMaterial);
+
+                scene.add(skyBox);
+
+                var texture = new THREE.TextureLoader().load("assets/textures/mossy.jpg");
+                texture.wrapS = THREE.RepeatWrapping;
+                texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set(1, 1);
+
+                var moss = new THREE.TextureLoader().load("assets/textures/mossy.jpg");
+                moss.wrapS = THREE.RepeatWrapping;
+                moss.wrapT = THREE.RepeatWrapping;
+                moss.repeat.set(1, 1);
+
+                geometry = new THREE.SphereGeometry(2, 20, 20)
+
+                for (var i = 0; i < geometry.vertices.length; i++) {
+                    var v = geometry.vertices[i]
+                    console.log(v)
+                    var random = Math.random()
+                    v.x *= 1 + .5 * random;
+                    v.y *= 1 + .5 * random;
+                    v.z *= 1 + .5 * random;
+                }
+
+                torusGeo = new THREE.BoxGeometry(2, 2, 2, 1, 1, 1);
+
+                material = new THREE.MeshPhongMaterial({/*map: texture, emissive: 0xffff00,*/ envMap: cubeMap, shading: THREE.FlatShading});
+
+                meteor = new THREE.MeshPhongMaterial({map: texture, envMap: cubeMap, shading: THREE.FlatShading});
+                ball = new THREE.Mesh(geometry, material);
+                ball.position.y = 6;
+                // scene.add(ball);
+
+
+              circle = new THREE.Object3D();
+              skelet = new THREE.Object3D();
+
+              scene.add(circle);
+              scene.add(skelet);
+
+              circle.position.y = 8;
+              skelet.position.y = 8;
+
+              geom = new THREE.IcosahedronGeometry(7, 1);
+              geom2 = new THREE.IcosahedronGeometry(7, 1);
+              var geom3 = new THREE.IcosahedronGeometry(15, 1);
+
+            // var tessellateModifier = new THREE.TessellateModifier( 8 );
+            // for ( var i = 0; i < 6; i ++ ) {
+            //     tessellateModifier.modify( geom );
+            // }
+            // var explodeModifier = new THREE.ExplodeModifier();
+            // explodeModifier.modify( geom );
+            // var numFaces = geom.faces.length;
+
+              mat = new THREE.MeshPhongMaterial({
+                roughness: 0,
+                metalness: 1,
+                side: THREE.DoubleSide,
+                envMap: cubeMap,
+                shading: THREE.FlatShading
+              });
+
+              var mat2 = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                wireframe: true,
+                envMap: cubeMap, 
+                transparent:true,
+                opacity:.3,
+                side: THREE.DoubleSide
+
+              });
+
+              var planet = new THREE.Mesh(geom, mat);
+              planet.scale.x = planet.scale.y = planet.scale.z = .8;
+              circle.add(planet);
+
+              var planet2 = new THREE.Mesh(geom3, mat2);
+              planet2.scale.x = planet2.scale.y = planet2.scale.z = .5;
+              skelet.add(planet2);
+
+                // particles
+                var triGeo = new THREE.TetrahedronGeometry(2, 0);
+                var flatMat = new THREE.MeshPhongMaterial({
+                  color: 0xffffff,
+                  // envMap: cubeMap,
+                  shading: THREE.FlatShading
+                });                
+                particle = new THREE.Object3D();
+                scene.add(particle);
+
+              for (var i = 0; i < 1000; i++) {
+                var mesh = new THREE.Mesh(triGeo, material);
+                mesh.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+                mesh.position.multiplyScalar(90 + (Math.random() * 700));
+                mesh.rotation.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
+                particle.add(mesh);
+              }
+
+
+
+
+                // central object
+
+                var material1 = new THREE.MeshStandardMaterial({
+                    //color: 0,
+                    // map: texture,
+                    // roughness: 0,
+                    // metalness: 1,
+                    // lightMap: texture,
+                    // side: THREE.DoubleSide,
+                    // envMap: getCubeMap(1),
+                    
+                    shading: THREE.SmoothShading
+                });
+                material2 = new THREE.MeshStandardMaterial({
+                    // color: 0,
+                    // map: texture,
+                    roughness: 0,
+                    metalness: 1,
+                    // lightMap: texture,
+                    side: THREE.DoubleSide,
+                    envMap: cubeMap,
+                    transparent:true,
+                    opacity:.5,
+                    shading: THREE.FlatShading
+                });
+                var object = new THREE.Mesh(geometry, material);
+                //scene.add(object);
+                
+                var loader = new THREE.JSONLoader();
+
+                // loader.load(
+                //         'assets/3D/Floating_Island.js',
+                //         function (geometry) {
+
+                //             // var faceMaterial = new THREE.MultiMaterial([material1,material2]);
+                //             var rockMat = new THREE.MeshStandardMaterial({
+                //                 map: moss,
+                //                 lightMap: moss,
+                //                 shading: THREE.SmoothShading
+                //             });
+                //             var object = new THREE.Mesh(geometry, rockMat)
+                //             console.log(loader);
+
+                //             object.scale.set(.2, .2, .2);
+                //             object.position.set(50, 2, -110);
+                //             /*if (WEBVR.isAvailable() === true) {
+                //                 object.position.set(0, 2, -1);
+                //             }*/
+                //             scene.add(object);
+                //         }
+                // );
+
+
+
+                // cubes
+
+                var geo = new THREE.BoxGeometry(.05, .05, .05, 1, 1, 1)
+                group = new THREE.Object3D();
+                for (var _x = -13; _x <= 13; _x++) {
+                    for (var _y = -0; _y <= 0; _y++) {
+                        for (var _z = -13; _z <= 13; _z++) {
+                            var mesh = new THREE.Mesh(geo, material)
+
+                            mesh.scale.x = 10
+                            mesh.scale.y = 10
+                            mesh.scale.z = 10
+
+                            mesh.rotation.x = 0//Math.random();
+                            mesh.rotation.y = 0;
+                            mesh.rotation.z = 0;
+
+                            mesh.position.x = _x
+                            mesh.position.y = _y - 2
+                            mesh.position.z = _z
+
+                            mesh.lookAt(scene.position)
+
+                            group.add(mesh);
+                        }
+                    }
+                }
+
+                scene.add(group);
+
+        for (var j = 1; j < 20; j++) {
+            var r = 300
+            var tpos = new THREE.Vector3()
+            if (j != 0)
+                tpos.set((Math.random() - .5) * r, (Math.random() - .5) * r, (Math.random() - .5) * r)
+            for (var i = 0; i < 70; i++) {
+                asteroid = new THREE.Mesh(geometry, meteor)
+                var r = .2 + 1 * Math.random()
+                asteroid.position.set((Math.random() - .5) * r, (Math.random() - .5) * r, (Math.random() - .5) * r)
+                asteroid.position.add(tpos)
+                var scr0 = Math.random() * 3
+                var scr1 = Math.random() * 4
+                var scr2 = Math.random() * 2
+                asteroid.scale.set(scr0, scr1, scr2)
+                group.add(asteroid)
+                asteroid.castShadow = true;
+                asteroid.receiveShadow = true;
+            }
+        } 
+
+
+                // light
+
+                var light = new THREE.AmbientLight(0xFFFFFF);
+                scene.add(light);
+
+                // var pointlight = new THREE.PointLight(0xFFffff, 1, 10)
+                // pointlight.position.x = 10
+                // camera.add(pointlight)
+
+            }
+
+            function remove(object) {
+                //console.log('remove',object)
+                scene.remove(object)
+            }
+
+
+            var campo= true;
+
+
+            function camin(){
+
+            if(campo==true){
+                if(camera.position.z>-18){
+                  camera.position.z-=.1;
+                  if (camera.position.z > 20) {
+                    camera.position.y += 0.1;
+                  };
+                }
+                else {
+                  campo = false;
+                  camout()
+                }
+            }
+
+            else if(campo==false){
+              camout();
+              console.log(camera.position.z);
+            }
+            }
+
+            function camout(){
+              if(camera.position.z<20){
+                camera.position.z+=.1;
+                console.log('going out')
+              }
+              else{
+                campo=true;
+              }
+            }            
+
+            var num = 0;
+            var time = 0;
+            function render() {
+                time += 0.1;
+                requestAnimationFrame(render);
+
+                
+                // if (camera.position.z > 20) {
+                //     camera.position.z -= 0.1;
+                //     camera.position.y += 0.1;
+                // }
+                // else if (camera.position.z <= 20 && camera.position.z > -15){
+                //     camera.position.z -= 0.1;
+                // }
+
+                camin();
+                    
+                
+               
+               for (var i = 0; i < geom.vertices.length; i++) {
+                    var v = geom.vertices[i]
+                    var ov = geom2.vertices[i];
+                    var sin = (Math.sin(time / 100 + i / 10) + 1) / 2
+                    var random = Math.random()
+                    v.x = ov.x + .1 * random;
+                    v.y = ov.y + .1 * random;
+                    v.z = ov.z + .1 * random;
+                }
+                geom.verticesNeedUpdate = true;
+
+                // shatter
+                // geom.vertices[ THREE.Math.randInt( 0, 250 ) ].multiplyScalar((Math.random() * 1.5));
+                // geom.verticesNeedUpdate = true; // important
+
+
+                ball.rotation.y += 0.02;
+                particle.rotation.y += 0.02;
+    
+                mat.emissive.setHSL(1, 1, 0.5);
+
+                  circle.rotation.x -= 0.0020;
+                  circle.rotation.y -= 0.0030;
+                  skelet.rotation.x -= 0.0010;
+                  skelet.rotation.y += 0.0020;
+
+
+
+                // cube anim    
+                var i = 0
+                for (var _x = -13; _x <= 13; _x++) {
+                    for (var _y = -0; _y <= 0; _y++) {
+                        for (var _z = -13; _z <= 13; _z++) {
+                            var mesh = group.children[i]
+
+                            mesh.scale.x = 10;
+                            mesh.scale.y = 50 * (1 + Math.sin(-6 * (time / 10) + _x / 2) * Math.sin(0 + _z / 2)) / 2;
+                            //mesh.scale.z = 10;
+
+                            
+
+                            i++
+                        }
+                    }
+                }
+
+                
+                group.position.y = 1 * (1 + Math.sin(-6 * (time / 10)))
+                            
+
+
+
+                //num++
+                //if(num==2){
+                //    num=0
+                controls.update();
+
+                if (mobile) {
+                    camera.position.set(0, 0, 0)
+                    camera.translateZ(5);
+                }
+                renderer.render(scene, camera);
+                //}
+
+            }
+
+        </script>
+    </body>
+</html>
