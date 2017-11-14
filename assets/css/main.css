@@ -246,6 +246,22 @@ figure.effect-bubba:hover p {
 	transform: translate3d(0,0,0);
 }
 
+.social {
+	padding-top: 10px;
+}
+
+.social a {
+	width: 100px;
+	height: 100px;
+	margin: 5px;
+	padding: 10px 13px;
+	background: rgba(176, 46, 242, .3);
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+
+}
+
 #mc_embed_signup{clear:left; width:100%;}
 .email {border: 0; border-bottom: 1px solid #b02ef2; padding: 9px; color: #db2ef1; background: none;}
 .email:focus {outline: none; border: 0; border-bottom: 1px solid #db2ef1; }
