@@ -207,15 +207,23 @@ figure.effect-bubba figcaption::after {
 }
 
 figure.effect-bubba h2 {
-	padding-top: 35%;
+	padding-top: 30%;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
 	-webkit-transform: translate3d(0,-20px,0);
 	transform: translate3d(0,-20px,0);
 }
 
+figure.effect-bubba #mc_embed_signup {
+	padding-top: 0%;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(0,20px,0);
+	transform: translate3d(0,20px,0);
+}
+
 figure.effect-bubba p {
-	padding: 20px 2.5em;
+	padding: 20px 2em;
 	opacity: 0;
 	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.35s;
@@ -231,11 +239,35 @@ figure.effect-bubba:hover figcaption::after {
 }
 
 figure.effect-bubba:hover h2,
+figure.effect-bubba:hover #mc_embed_signup,
 figure.effect-bubba:hover p {
 	opacity: 1;
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 }
+
+#mc_embed_signup{clear:left; width:100%;}
+.email {border: 0; border-bottom: 1px solid #b02ef2; padding: 9px; color: #db2ef1; background: none;}
+.email:focus {outline: none; border: 0; border-bottom: 1px solid #db2ef1; }
+.button {background: rgba(176, 46, 242, .6); border-width: 0; border-style:none; color: #fff; padding:10px;}
+.button:hover {	
+	background: rgba(219, 46, 241, .8);
+	-webkit-transition: background 0.35s;
+	transition: background 0.35s;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: rgba(176, 46, 242, .7);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: rgba(176, 46, 242, .7);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: rgba(176, 46, 242, .7);
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: rgba(176, 46, 242, .7);
+}
+
 
 
 @media screen and (max-width: 50em) {
@@ -249,4 +281,13 @@ figure.effect-bubba:hover p {
 		margin: 10px auto;
 		width: 100%;
 	}
+	figure.effect-bubba h2 {
+	padding-top: 18%; 
+	}
+	.email {
+		margin-bottom: 1em;
+	}
+	.button { 
+		font-size: .8em; 
+	} 
 }
