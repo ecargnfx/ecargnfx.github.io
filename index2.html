@@ -1,209 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta property="og:title" content="Grace Ng"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content=""/>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta property="og:title" content="Grace Ng"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content=""/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">      
+        <title>Grace Ng | Artist, Entrepreneur</title>
 
-    <title>Design Portfolio of Grace Ng</title>
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!-- <link rel="stylesheet" href="assets/css/magic.min.css" />         -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
 
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
 
-    <script src="assets/js/threejs/three.js"></script>
-    <script src="assets/js/threejs/WebVR.js"></script>
-    <script src="assets/js/threejs/effects/VREffect.js"></script>
-    <script src="assets/js/threejs/effects/StereoEffect.js"></script>
+        <script src="assets/js/threejs/three.js"></script>
+        <script src="assets/js/threejs/WebVR.js"></script>
+        <script src="assets/js/threejs/effects/VREffect.js"></script>
+        <script src="assets/js/threejs/effects/StereoEffect.js"></script>
 
-    <script src="assets/js/threejs/controls/VRControls.js"></script>
-    <script src="assets/js/threejs/controls/DeviceOrientationControls.js"></script>
-    <script src="assets/js/threejs/controls/OrbitControls.js"></script>
+        <script src="assets/js/threejs/controls/VRControls.js"></script>
+        <script src="assets/js/threejs/controls/DeviceOrientationControls.js"></script>
+        <script src="assets/js/threejs/controls/OrbitControls.js"></script>
 
-    <script src="assets/js/bg.js"></script>
+        <script src="assets/js/jquery-3.1.1.min.js"></script>
+        
+
+        <script>
+            var renderer, scene, camera;
+            var cube;
+            var spheres = [];
+            var sphere;
+
+            var clock = new THREE.Clock();
+
+            window.onload = function() {
+              init();
+              animate();
+            }
+
+            function init() {
+              renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+              renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
+              renderer.setSize(window.innerWidth, window.innerHeight);
+              renderer.autoClear = false;
+              renderer.setClearColor(0x000000, 0.0);
+              document.body.appendChild(renderer.domElement);
+
+              scene = new THREE.Scene();
+
+              camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+              camera.position.z = 5;
+              scene.add(camera);
 
 
-  </head>
+              // setup object and add to scene
+              var geometry = new THREE.IcosahedronGeometry(2, 0),
 
-  <body>
+                  material2 = new THREE.MeshLambertMaterial({
+                  color: new THREE.Color(Math.random(), Math.random() * 0.5, Math.random()),
+                  blending: THREE.AdditiveBlending,
+                  depthTest: false,
+                  transparent: true
+              });                
+              cube = new THREE.Mesh(geometry, material2);
+              // scene.add(cube)
+              var wireframe = cube.clone();
+              wireframe.material = wireframe.material.clone();
+              wireframe.material.wireframe = true;
+              cube.add(wireframe);
+     
+              var colors = [
+                  "#F27541",
+                  "#ECB142",
+                  "#9BDAF2",
+                  "#3C88A6",
+                  "#A73F34",
+              ];
+                   
+              for (var i = 0; i < 200; i++) {
+                var color = colors[Math.floor((Math.random() * 5))]
+                var radius = Math.random() * 12;
+                var geometry = new THREE.IcosahedronGeometry( radius, 0 );
+                var material = new THREE.MeshPhongMaterial( { color: color, shading: THREE.FlatShading, vertexColors: THREE.VertexColors, shininess: 0 } );
+                sphere = new THREE.Mesh( geometry, material );
+                sphere.position.x = ( Math.random() - 0.5 ) * 1500;
+                sphere.position.y = ( Math.random() - 0.5 ) * 1500;
+                sphere.position.z = ( Math.random() - 0.5 ) * 1500;
+                sphere.velocity = {x: 0.01, y: 0.01, z: 0.01};
+                sphere.radius = radius;
+                spheres.push(sphere)
+                scene.add( sphere );                 
+              };
 
-   
-<!--
-  <div id="headerwrap">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-lg-offset-3">
-            <h1>Hi, I'm Grace</h1>
-            <h3>I design and build experiences for the human connection</h3>
-          </div>
-        </div>
-      </div>     
-  </div> 
---> 
-  <section id="works"></section>
-  <div class="container">
-    <div class="row mb centered">
-      <div class="box-with-text">
-        <h1 id="responsive_headline">GRACE NG</h1>
-        <h2 id="responsive_headline">I research, design <span>&</span> build experiences</h1>
-      </div>
-    </div>  
-    <div class="row mt mb">
-      <div class="col-lg-4 col-lg-offset-2">
-        <h2>Portfolio</h2>
-        <hr>
-        <div class="section mtm">
-          <h4>
-            <a href="web.html">Javelin &raquo</a> 
-          </h4>  
-          <p>  
-            Javelin is a software platform to help companies test demand for new product ideas. As a design leader, I fostered a culture of rapid experimentation and sought qualitative and quantitative data to direct team to a new product that generated $250K ARR within 6 months.
-          </p>
-        </div>
-        <div class="section mtm">
-          <h4>
-            <a href="future.html">BrainPaint3D &raquo</a>  
-          </h4>  
-          <p>  
-            I built a project to paint in VR with your brain. Within a week of debut, BrainPaint was invited to Gray Area, UploadVR, and East Meets West, where it was a huge hit with the audience. 
-          </p>
-        </div>
-        <div class="section mtm mb">
-          <h4>
-            <a href="mobile.html">Mobile Apps &raquo</a>
-          </h4>  
-          <p>  
-            As a mobile designer, I've worked with clients like Crayola, Ikea, and Chevron. The app I designed for Central Park was featured New and Noteworthy and #1 Reference App in Apple's app store.
-          </p>
-        </div>
-      </div>  
-      <div class="col-lg-4">
-        <h2>About</h2>
-        <hr>
-        <div class="section mtm">
-          <p>
-            As a designer and entrepreneur, I turn user needs into designs and solutions. I define success of my work by how much value it creates, and how much it emotionally connects with users.</a>
-          </p>
-
-        </div>
-        <div class="section mtm"> 
-          <h4>Speaking Engagements</h4>
-          <p>
-            I developed <a href="https://www.youtube.com/watch?v=F-5Iyj9A1MU">educational curriculum</a> on UX and Lean Startup, and <a href="https://www.youtube.com/watch?v=-_MH8TENpwc">teach others</a>.
-            <ul>
-              <li>
-                The White House
-              </li>
-              <li>  
-                United Nations
-              </li> 
-              <li>  
-                Singularity University
-              </li> 
-            </ul>
-          </p>
-        </div>    
-            
-        <div class="section mtm"> 
-          <h4>Writings</h4>
-          <p>
-            <ul>
-              <li>
-                Forbes: <a href="http://www.forbes.com/sites/groupthink/2014/04/28/five-pitfalls-of-running-lean-startup-experiments/#3a2b90967f0b" target="_blank">Five Pitfalls of Running Experiments</a>
-              </li>
-              <li>
-                Smashing Magazine: <a href="http://www.smashingmagazine.com/2014/04/10/a-guide-to-validating-product-ideas-with-quick-and-simple-experiments" target="_blank">A Guide To Validating Product Ideas With Quick And Simple Experiments</a>
-              </li>
-              <li>
-                Inc: <a href="http://www.inc.com/grace-ng/4-early-indicators-your-startup-idea-can-succeed.html" target="_blank">4 Early Indicators Your Startup Idea Can Succeed</a>
-              </li>
-              <li>
-                <a href="http://uxceo.com/post/46777371976/when-should-your-startup-focus-on-ux" target="_blank">When should your startup focus on UX?</a>
-              </li>
-              <li>
-                <a href="http://uxceo.com/post/36739158137/the-ugly-flaw-of-design-at-startups" target="_blank">The ugly flaw of design at startups</a>
-              </li>
-              <li>
-                <a href="http://uxceo.com/post/80877539095/quick-tips-for-effective-customer-interviews" target="_blank">Quick Tips for Effective Customer Interviews</a>
-              </li>
-            </ul>
-          </p>         
-        </div>
-      </div>  
-    </div>
-
-  </div><! --/container --> 
-
-  <div id="footerwrap">
-    <div class="container">
-      <div class="row centered">
-        <div class="col-lg-4">
-          <p><a href="mailto:gracenfx@gmail.com?Subject=Hi%20Grace" target="_top">gracenfx@gmail.com</a></p>
-        </div>
-      
-        <div class="col-lg-4 social">
-          <ul>
-            <li>
-              <a href="http://twitter.com/uxceo" target="_blank"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li>
-              <a href="http://github.com/ecargnfx" target="_blank"><i class="fa fa-github"></i></a>
-            </li>
-            <li>
-              <a href="http://linkedin.com/in/nggrace" target="_blank"><i class="fa fa-linkedin"></i></a>
-            </li>
-            <li>
-              <a href="http://uxceo.com" target="_blank"><i class="fa fa-tumblr"></i></a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-lg-4">
-          <p>Based in San Francisco</p>
-        </div>
-      </div>
-    </div>
-  </div><! --/footerwrap -->
+              var lights = [];
+                lights[0] = new THREE.DirectionalLight( 0xffffff, 1 );
+                lights[0].position.set( 1, 0, 0 );
+                lights[1] = new THREE.DirectionalLight( 0x11E8BB, 1 );
+                lights[1].position.set( 0.75, 1, 0.5 );
+                lights[2] = new THREE.DirectionalLight( 0x8200C9, 1 );
+                lights[2].position.set( -0.75, -1, 0.5 );
+                scene.add( lights[0] );
+                scene.add( lights[1] );
+                scene.add( lights[2] );
   
 
+            window.addEventListener('resize', onWindowResize, false);
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.fittext.js"></script>
-    <script>
-      (function ($) {
-        $(document).ready(function(){
+            };
 
-          // show .navbar first
-          $(".navbar").show();
+            function onWindowResize() {
+              camera.aspect = window.innerWidth / window.innerHeight;
+              camera.updateProjectionMatrix();
+              renderer.setSize(window.innerWidth, window.innerHeight);
 
-          // fade out .navbar
-          $(function () {
-              $(window).scroll(function () {
+            }
 
-                       // set distance user needs to scroll before fadeOut
-                  if ($(this).scrollTop() > 100) {
-                      $('.navbar').fadeOut();
-                  } else {
-                      $('.navbar').fadeIn();
-                  }
-              });
-          });
+            
+            function animate() {
+              var timer = Date.now() * 0.002;
+              requestAnimationFrame(animate);
 
-      });
-        }(jQuery));    
-    </script>
-    <script>
-      jQuery("#responsive_headline").fitText(0.6);
-    </script>
-  </body>
+              cube.rotation.x += 0.01;
+              cube.rotation.y += 0.01;
+
+              spheres.forEach(function(sphere) {
+                sphere.position.x += 0.1 * Math.sin(timer);
+                sphere.position.y += 0.1;
+                sphere.rotation.x += 0.01;
+                sphere.rotation.y += 0.01;                
+              });  
+                                
+              renderer.render( scene, camera )
+            };
+
+        </script>
+
+        <div class="container">
+           <div class="col-lg-8 col-lg-offset-2">
+            <h2> grace ng </h2>
+            <p>
+              Grace is an artist based out of Shanghai and San Francisco. She works at the intersection of emerging technology, mindfulness, and social impact by combining VR, AI and neuroscience into artistic experiences that elevate the human consciousness.
+            </p>   
+            <div class="social">
+              <a href="mailto:gracenfx@gmail.com?Subject=Hi%20Grace" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a>   
+              <a href="https://www.instagram.com/uxceo" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
+              <a href="https://www.twitter.com/uxceo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+            </div>
+           </div>           
+          <div class="col-lg-12 mt mb">
+            <div class="grid">
+              <figure class="effect-bubba">
+                <img src="assets/img/brainpaint-thumb.jpg" alt="brain paint 3D"/>
+                <figcaption>
+                  <h2>Brain<span>Paint</span>3D</h2>
+                  <p>Paint with your brain! Featured at Gray Area, UploadVR, and East Meets West.</p>
+                  <a href="http://brainpaint3d.com" target="_blank">View more</a>
+                </figcaption>     
+              </figure>
+              <figure class="effect-bubba">
+                <img src="assets/img/aime.jpg" alt="coming soon"/>
+                <figcaption>
+                  <h2>Coming <span>Soon</span></h2>
+                  <p>Stay tuned for new art works</p>
+                  <!-- Begin MailChimp Signup Form -->
+                  <div id="mc_embed_signup">
+                  <form action="//uxceo.us6.list-manage.com/subscribe/post?u=0a41b433b235523be2d03ece0&amp;id=3bec3eb06a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                      <div id="mc_embed_signup_scroll">
+                    <label for="mce-EMAIL"></label>
+                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your email address" required >
+                      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0a41b433b235523be2d03ece0_3bec3eb06a" tabindex="-1" value=""></div>
+                      <input type="submit" value="Get Updates" name="subscribe" id="mc-embedded-subscribe" class="button">
+                      </div>
+                  </form>
+                  </div>
+
+                  <!--End mc_embed_signup-->                   
+                </figcaption>     
+              </figure>
+            </div>
+            <div class="grid mb">
+              <figure class="effect-bubba">
+                <img src="assets/img/goldendreams.jpg" alt="golden dreams"/>
+                <figcaption>
+                  <h2>Golden <span>Dream</span></h2>
+                  <p>WebVR piece with music by Dana Leong. Premiered at NakedHub Shanghai Launch Party.</p>
+                  <a href="golden.html" target="_blank">View more</a>
+                </figcaption>     
+              </figure>
+              <figure class="effect-bubba">
+                <img src="assets/img/disco.jpg" alt="life after dark"/>
+                <figcaption>
+                  <h2>Life <span>After</span> Dark</h2>
+                  <p>WebVR piece with music by Dana Leong. Premiered at NakedHub Shanghai Launch Party.</p>
+                  <a href="lifeafterdark.html" target="_blank">View more</a>
+                </figcaption>     
+              </figure>              
+            </div>                
+          </div>  
+        </div>
+       
+    </body>
 </html>

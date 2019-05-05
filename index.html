@@ -1,213 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <meta property="og:title" content="Grace Ng"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:image" content=""/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">      
-        <title>Grace Ng | Artist, Entrepreneur</title>
 
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <!-- <link rel="stylesheet" href="assets/css/magic.min.css" />         -->
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
+<head>
 
-        <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
-        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-        <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    </head>
-    <body>
+  <title>Grace Ng - Neuro-Artist, Entrepreneur, AI Investor</title>
 
-        <script src="assets/js/threejs/three.js"></script>
-        <script src="assets/js/threejs/WebVR.js"></script>
-        <script src="assets/js/threejs/effects/VREffect.js"></script>
-        <script src="assets/js/threejs/effects/StereoEffect.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <script src="assets/js/threejs/controls/VRControls.js"></script>
-        <script src="assets/js/threejs/controls/DeviceOrientationControls.js"></script>
-        <script src="assets/js/threejs/controls/OrbitControls.js"></script>
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
-        <script src="assets/js/jquery-3.1.1.min.js"></script>
-        
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.css" rel="stylesheet">
+  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+</head>
 
-        <script>
-            var renderer, scene, camera;
-            var cube;
-            var spheres = [];
-            var sphere;
+<body id="page-top">
 
-            var clock = new THREE.Clock();
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Grace Ng</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">Work</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#speaking">Speaking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#signup mc_embed_signup">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-            window.onload = function() {
-              init();
-              animate();
-            }
-
-            function init() {
-              renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-              renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
-              renderer.setSize(window.innerWidth, window.innerHeight);
-              renderer.autoClear = false;
-              renderer.setClearColor(0x000000, 0.0);
-              document.body.appendChild(renderer.domElement);
-
-              scene = new THREE.Scene();
-
-              camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-              camera.position.z = 5;
-              scene.add(camera);
-
-
-              // setup object and add to scene
-              var geometry = new THREE.IcosahedronGeometry(2, 0),
-
-                  material2 = new THREE.MeshLambertMaterial({
-                  color: new THREE.Color(Math.random(), Math.random() * 0.5, Math.random()),
-                  blending: THREE.AdditiveBlending,
-                  depthTest: false,
-                  transparent: true
-              });                
-              cube = new THREE.Mesh(geometry, material2);
-              // scene.add(cube)
-              var wireframe = cube.clone();
-              wireframe.material = wireframe.material.clone();
-              wireframe.material.wireframe = true;
-              cube.add(wireframe);
-     
-              var colors = [
-                  "#F27541",
-                  "#ECB142",
-                  "#9BDAF2",
-                  "#3C88A6",
-                  "#A73F34",
-              ];
-                   
-              for (var i = 0; i < 200; i++) {
-                var color = colors[Math.floor((Math.random() * 5))]
-                var radius = Math.random() * 12;
-                var geometry = new THREE.IcosahedronGeometry( radius, 0 );
-                var material = new THREE.MeshPhongMaterial( { color: color, shading: THREE.FlatShading, vertexColors: THREE.VertexColors, shininess: 0 } );
-                sphere = new THREE.Mesh( geometry, material );
-                sphere.position.x = ( Math.random() - 0.5 ) * 1500;
-                sphere.position.y = ( Math.random() - 0.5 ) * 1500;
-                sphere.position.z = ( Math.random() - 0.5 ) * 1500;
-                sphere.velocity = {x: 0.01, y: 0.01, z: 0.01};
-                sphere.radius = radius;
-                spheres.push(sphere)
-                scene.add( sphere );                 
-              };
-
-              var lights = [];
-                lights[0] = new THREE.DirectionalLight( 0xffffff, 1 );
-                lights[0].position.set( 1, 0, 0 );
-                lights[1] = new THREE.DirectionalLight( 0x11E8BB, 1 );
-                lights[1].position.set( 0.75, 1, 0.5 );
-                lights[2] = new THREE.DirectionalLight( 0x8200C9, 1 );
-                lights[2].position.set( -0.75, -1, 0.5 );
-                scene.add( lights[0] );
-                scene.add( lights[1] );
-                scene.add( lights[2] );
-  
-
-            window.addEventListener('resize', onWindowResize, false);
-
-            };
-
-            function onWindowResize() {
-              camera.aspect = window.innerWidth / window.innerHeight;
-              camera.updateProjectionMatrix();
-              renderer.setSize(window.innerWidth, window.innerHeight);
-
-            }
-
-            
-            function animate() {
-              var timer = Date.now() * 0.002;
-              requestAnimationFrame(animate);
-
-              cube.rotation.x += 0.01;
-              cube.rotation.y += 0.01;
-
-              spheres.forEach(function(sphere) {
-                sphere.position.x += 0.1 * Math.sin(timer);
-                sphere.position.y += 0.1;
-                sphere.rotation.x += 0.01;
-                sphere.rotation.y += 0.01;                
-              });  
-                                
-              renderer.render( scene, camera )
-            };
-
-        </script>
-
-        <div class="container">
-           <div class="col-lg-8 col-lg-offset-2">
-            <h2> grace ng </h2>
-            <p>
-              Grace is an artist based out of Shanghai and San Francisco. She works at the intersection of emerging technology, mindfulness, and social impact by combining VR, AI and neuroscience into artistic experiences that elevate the human consciousness.
-            </p>   
-            <div class="social">
-              <a href="mailto:gracenfx@gmail.com?Subject=Hi%20Grace" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a>   
-              <a href="https://www.instagram.com/uxceo" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
-              <a href="https://www.twitter.com/uxceo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
-            </div>
-           </div>           
-          <div class="col-lg-12 mt mb">
-            <div class="grid">
-              <figure class="effect-bubba">
-                <img src="assets/img/brainpaint-thumb.jpg" alt="brain paint 3D"/>
-                <figcaption>
-                  <h2>Brain<span>Paint</span>3D</h2>
-                  <p>Paint with your brain! Featured at Gray Area, UploadVR, and East Meets West.</p>
-                  <a href="http://brainpaint3d.com" target="_blank">View more</a>
-                </figcaption>     
-              </figure>
-              <figure class="effect-bubba">
-                <img src="assets/img/aime.jpg" alt="coming soon"/>
-                <figcaption>
-                  <h2>Coming <span>Soon</span></h2>
-                  <p>Stay tuned for new art works</p>
-                  <!-- Begin MailChimp Signup Form -->
-                  <div id="mc_embed_signup">
-                  <form action="//uxceo.us6.list-manage.com/subscribe/post?u=0a41b433b235523be2d03ece0&amp;id=3bec3eb06a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                      <div id="mc_embed_signup_scroll">
-                    <label for="mce-EMAIL"></label>
-                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your email address" required >
-                      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0a41b433b235523be2d03ece0_3bec3eb06a" tabindex="-1" value=""></div>
-                      <input type="submit" value="Get Updates" name="subscribe" id="mc-embedded-subscribe" class="button">
-                      </div>
-                  </form>
-                  </div>
-
-                  <!--End mc_embed_signup-->                   
-                </figcaption>     
-              </figure>
-            </div>
-            <div class="grid mb">
-              <figure class="effect-bubba">
-                <img src="assets/img/goldendreams.jpg" alt="golden dreams"/>
-                <figcaption>
-                  <h2>Golden <span>Dream</span></h2>
-                  <p>WebVR piece with music by Dana Leong. Premiered at NakedHub Shanghai Launch Party.</p>
-                  <a href="golden.html" target="_blank">View more</a>
-                </figcaption>     
-              </figure>
-              <figure class="effect-bubba">
-                <img src="assets/img/disco.jpg" alt="life after dark"/>
-                <figcaption>
-                  <h2>Life <span>After</span> Dark</h2>
-                  <p>WebVR piece with music by Dana Leong. Premiered at NakedHub Shanghai Launch Party.</p>
-                  <a href="lifeafterdark.html" target="_blank">View more</a>
-                </figcaption>     
-              </figure>              
-            </div>                
-          </div>  
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center col-md-8 offset-md-4">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase box-with-text">Grace Ng</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">Entrepreneur · Neuro-Artist · AI Investor</h2>
+        <a href="mailto:gracenfx@gmail.com?Subject=Hi%20Grace" target="_blank" class="btn btn-primary">Contact Me</a>
+        <div class="social d-flex justify-content-center mt-3">
+          <a href="http://instagram.com/uxceo" target="_blank" class="mx-2">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/uxceo" target="_blank" class="mx-2">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://linkedin.com/in/nggrace/" target="_blank" class="mx-2">
+            <i class="fab fa-linkedin"></i>
+          </a>
         </div>
-       
-    </body>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- <h2 class="text-white mb-4">Built with Bootstrap 4</h2> -->
+          <p class="text-white-50">Grace is a tech entrepreneur, angel investor, neuro-artist, and international speaker specializing in startup creation, innovation ecosystems, and creative uses of emerging technology. Grace is a Partner at Lean Venture Partners, one of China's first early-stage AI accelerator, Co-Founder of Javelin.com, a platform that guides entrepreneurs to get from idea to product/market fit, and Co-Founder of Lean Startup Machine, a global entrepreneurship education workshop that’s helped over 200,000 people in 64 countries turn their ideas into viable new startups. She’s been a mentor and advisor to many startups, an innovation coach for Fortune 500s, a guest speaker at The U.S. White House, a guest lecturer at Ivy League Universities, and in 2018, was selected to lead Global Shapers Shanghai, an initiative of the World Economic Forum. </p>
+
+          <p class="text-white-50">Through her work, she has a global view on the barriers to innovation and human potential. As an artist, Grace develops interactive experiences to elevate consciousness and empower action using technologies like EEG sensors, VR, and AI. She has been invited to exhibit at MIT, China Fashion Week, Shanghai Tower, and other cities, where government officials and the public were introduced to the possibilities of neuroscience and emerging technologies through her art.</p>
+
+          <p class="text-white-50">Her work has been featured and recognized by:</p>
+        </div>
+      </div>
+      <div class="row flex">
+        <div class="col-md-2 mx-auto align-base mt-3 mb-3">
+          <img src="img/logo-whitehouse.png" class="img-fluid gray" alt="">
+        </div>
+        <div class="col-md-2 mx-auto align-base mt-3 mb-3">
+          <img src="img/logo-wef.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-2 mx-auto align-base mt-3 mb-3">
+          <img src="img/logo-un.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-2 mx-auto align-base mt-3 mb-3">
+          <img src="img/logo-forbes.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-2 mx-auto align-base mt-3 mb-3">
+          <img src="img/logo-inc.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-2 mx-auto align-base mt-3 mb-3">
+          <img src="img/logo-entrepreneur.png" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section bg-light">
+    <div class="container">
+
+      <!-- Featured Project Row -->
+      <!-- <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+        <div class="col-xl-8 col-lg-7">
+          <div class="videoWrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/JSzYr2jw5zA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <h4>Shoreline</h4>
+            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Project One Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <div class="videoWrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/F-5Iyj9A1MU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Entrepreneur</h4>
+                <p class="mb-0 text-white-50">Known for founding Lean Startup Machine, the world's leading entrepreneur education workshop that's helped 200K people in 64 countries learn the skills to test demand of new business ideas. The startup tools and curriculum she's developed is now used by accelerators and universities worldwide. <a href="http://javelin.com">Learn more</a> </p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/startups.jpg" alt="">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">Investor</h4>
+                <p class="mb-0 text-white-50">Partner at Lean Venture Partners, a new type of fund helping founders get from idea to product/market fit. LVP partners with funds, companies and universities to de-risk and prove out business models of early-stage startups to increase their success. Currently partnered with Google to invest in AI startups in China. Grace is also an advisor and mentor for startups at Chinaccelerator SOSV, Transformative Tech Academy, and WeWork. <a href="http://leanvp.com">Learn more</a></p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Three Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <div class="videoWrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/JSzYr2jw5zA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Artist</h4>
+                <p class="mb-0 text-white-50">Grace creates interactive art experiences to elevate human consciousness and introduce scientific concepts using emerging technologies like EEG sensors, VR, and AI. In her brain art installation, MindPaint, generate paintings that react to your mental state. Exhibited at MIT, China Fashion Week, Shanghai Tower, Dubai, and Singapore.</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Speaking Section -->
+  <section id="speaking" class="speaking-section bg-light">
+    <div class="container">
+
+      <!-- Featured Project Row -->
+      <hr class="d-none d-lg-block mt-0 mb-5">
+      <div class="row no-gutters pb-5">
+        <div class="col-xl-4">
+          <div class="featured-text text-center text-lg-left">
+            <h4>Speaking Topics</h4>
+            <p class="text-black-50 mb-0">
+              <ul>
+                <li>
+                  Conscious Creation: What's Needed to Succeed as Creators of the Future
+                </li>
+                <li>
+                  An Artistic Exploration into Brain Computer Interfaces
+                </li>
+                <li>
+                  How to Build Startup Ecosystems for Sustainable Economies
+                </li>
+                <li>
+                  Lean User Experience
+                </li>
+                </li>
+                <li>
+                  Lean Startup
+                </li>
+                <li>
+                  Female Leadership
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="featured-text text-center text-lg-left">
+            <h4>Speaking Engagements</h4>
+            <p class="text-black-50 mb-0">
+              <ul>
+                <li>
+                  WISE, Beijing, China, 2019
+                </li>
+                <li>
+                  EUC, Nicosia, Cyprus, 2019
+                </li>
+                <li>
+                  TEDx, Guangzhou, China, 2018
+                </li>
+                <li>
+                  Darkhorse, Beijing, China, 2018
+                </li>
+                <li>
+                  CeBIT, Hanover, Germany, 2018
+                </li>
+                <li>
+                  Slush, Shanghai, China, 2018
+                </li>
+                <li>
+                  Lean In China, Beijing, China, 2018
+                </li>
+                <li>
+                  IMI Festival, Singapore, 2017
+                </li>
+                <li>
+                  Future 2050, Hangzhou, China, 2017
+                </li>
+                <li>
+                  MIC, Hyderabad, India, 2016
+                </li>
+                <li>
+                  H3, San Juan, Puerto Rico, 2014 
+                </li>
+                <li>
+                  Lean Startup Conference, SF, CA, 2014 
+                </li>
+                <li>
+                  Lean UK, Manchester, UK, 2014
+                </li>
+                <li>
+                  United Nations, NYC, NY, 2014
+                </li>
+                <li>
+                  Searchlove, San Diego, CA, 2014
+                </li>
+                <li>
+                  UX Fest, Boston, MA, 2013
+                </li>
+                <li>
+                  UXPA, Boston, MA, 2013
+                </li>
+                <li>
+                  LeanUX, NYC, NY, 2013
+                </li>
+                <li>
+                  The United States White House, Washington DC, 2012
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="featured-text text-center text-lg-left">
+            <h4>Guest Lecturer</h4>
+            <p class="text-black-50 mb-0">
+              <ul>
+                <li>
+                  Wharton, University of Pennsylvania
+                </li>
+                <li>
+                  Singularity University
+                </li>
+                <li>
+                  Princeton University
+                </li>
+                <li>
+                  Barnard College
+                </li>
+                <li>
+                  New York University
+                </li>
+                <li>
+                  Parsons School of Design
+                </li>
+                <li>
+                  Xi'an Academy of Fine Arts
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup mc_embed_signup" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+
+          <form action="//uxceo.us6.list-manage.com/subscribe/post?u=0a41b433b235523be2d03ece0&amp;id=3bec3eb06a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline d-flex" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll" class="w-100">
+            <label for="mce-EMAIL"></label>
+            <input type="email" value="" name="EMAIL" class="email form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="mce-EMAIL" placeholder="your email" required >
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0a41b433b235523be2d03ece0_3bec3eb06a" tabindex="-1" value=""></div>
+              <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary mx-auto">Get Updates</button>
+              </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section bg-black">
+    <div class="container">
+      <div class="social d-flex justify-content-center mt-3">
+        <a href="http://instagram.com/uxceo" target="_blank" class="mx-2">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com/uxceo" target="_blank" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkedin.com/in/nggrace/" target="_blank" class="mx-2">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black small text-center text-white-50">
+    <div class="container">
+      Copyright &copy; Grace Ng 2019
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
+
+</body>
+
 </html>
