@@ -117,7 +117,7 @@ h2 > span {
     -webkit-animation: stripes 3s linear infinite;
     animation: stripes 3s linear infinite;
     -webkit-text-fill-color: transparent;
-} 
+}
 
 /*.box-with-text:before {
     content: '';
@@ -150,9 +150,9 @@ p {
   line-height: 1.5em;
 }
 
-img { 
-  display: block; 
-  margin: 0 auto; 
+img {
+  display: block;
+  margin: 0 auto;
 }
 
 .navbar {
@@ -214,7 +214,7 @@ img {
 	background-position: center center;
 	min-height: 650px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -312,14 +312,14 @@ img {
 #future {
   background: url(../img/brainpaint.jpg) no-repeat center top;
 }
-.workwrap {	
+.workwrap {
 	margin-top: -70px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
 	min-height: 650px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -352,7 +352,7 @@ img {
   color: #999;
 }
 
-#aboutwrap {	
+#aboutwrap {
 	background: url(../img/graceng.jpg) no-repeat center top;
 	margin-top: -70px;
 	padding-top: 250px;
@@ -361,7 +361,7 @@ img {
 	background-position: center center;
 	min-height: 550px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
