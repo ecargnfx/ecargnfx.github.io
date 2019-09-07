@@ -8,7 +8,7 @@
         <meta property="og:title" content="Grace Ng"/>
         <meta property="og:type" content="website"/>
         <meta property="og:image" content=""/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">      
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <title>Grace Ng | Artist, Entrepreneur</title>
 
         <link rel="stylesheet" href="assets/css/main.css" />
@@ -32,7 +32,7 @@
         <script src="assets/js/threejs/controls/OrbitControls.js"></script>
 
         <script src="assets/js/jquery-3.1.1.min.js"></script>
-        
+
 
         <script>
             var renderer, scene, camera;
@@ -70,14 +70,14 @@
                   blending: THREE.AdditiveBlending,
                   depthTest: false,
                   transparent: true
-              });                
+              });
               cube = new THREE.Mesh(geometry, material2);
               // scene.add(cube)
               var wireframe = cube.clone();
               wireframe.material = wireframe.material.clone();
               wireframe.material.wireframe = true;
               cube.add(wireframe);
-     
+
               var colors = [
                   "#F27541",
                   "#ECB142",
@@ -85,7 +85,7 @@
                   "#3C88A6",
                   "#A73F34",
               ];
-                   
+
               for (var i = 0; i < 200; i++) {
                 var color = colors[Math.floor((Math.random() * 5))]
                 var radius = Math.random() * 12;
@@ -98,7 +98,7 @@
                 sphere.velocity = {x: 0.01, y: 0.01, z: 0.01};
                 sphere.radius = radius;
                 spheres.push(sphere)
-                scene.add( sphere );                 
+                scene.add( sphere );
               };
 
               var lights = [];
@@ -111,7 +111,7 @@
                 scene.add( lights[0] );
                 scene.add( lights[1] );
                 scene.add( lights[2] );
-  
+
 
             window.addEventListener('resize', onWindowResize, false);
 
@@ -124,7 +124,7 @@
 
             }
 
-            
+
             function animate() {
               var timer = Date.now() * 0.002;
               requestAnimationFrame(animate);
@@ -136,9 +136,9 @@
                 sphere.position.x += 0.1 * Math.sin(timer);
                 sphere.position.y += 0.1;
                 sphere.rotation.x += 0.01;
-                sphere.rotation.y += 0.01;                
-              });  
-                                
+                sphere.rotation.y += 0.01;
+              });
+
               renderer.render( scene, camera )
             };
 
@@ -148,23 +148,23 @@
            <div class="col-lg-8 col-lg-offset-2">
             <h2> grace ng </h2>
             <p>
-              Grace is an artist based out of Shanghai and San Francisco. She works at the intersection of emerging technology, mindfulness, and social impact by combining VR, AI and neuroscience into artistic experiences that elevate the human consciousness.
-            </p>   
+              Grace is an artist based in Shanghai, originally from New York City. She works at the intersection of emerging technology, mindfulness, and social impact by combining AR/VR, AI and neuroscience into artistic experiences that elevate the human consciousness.
+            </p>
             <div class="social">
-              <a href="mailto:gracenfx@gmail.com?Subject=Hi%20Grace" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a>   
-              <a href="https://www.instagram.com/uxceo" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
-              <a href="https://www.twitter.com/uxceo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+              <a href="mailto:gracenfx@gmail.com?Subject=Hi%20Grace" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+              <a href="https://www.instagram.com/uxceo" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+              <a href="https://www.twitter.com/uxceo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             </div>
-           </div>           
+           </div>
           <div class="col-lg-12 mt mb">
             <div class="grid">
               <figure class="effect-bubba">
-                <img src="assets/img/brainpaint-thumb.jpg" alt="brain paint 3D"/>
+                <img src="assets/img/brainpaint-body-thumb.jpg" alt="brain paint"/>
                 <figcaption>
-                  <h2>Brain<span>Paint</span>3D</h2>
-                  <p>Paint with your brain! Featured at Gray Area, UploadVR, and East Meets West.</p>
+                  <h2>Brain<span>Paint</span></h2>
+                  <p>Paint with your brain! Featured at MIT, Shanghai Tower, China Fashion Week, and East Meets West.</p>
                   <a href="http://brainpaint3d.com" target="_blank">View more</a>
-                </figcaption>     
+                </figcaption>
               </figure>
               <figure class="effect-bubba">
                 <img src="assets/img/aime.jpg" alt="coming soon"/>
@@ -184,8 +184,8 @@
                   </form>
                   </div>
 
-                  <!--End mc_embed_signup-->                   
-                </figcaption>     
+                  <!--End mc_embed_signup-->
+                </figcaption>
               </figure>
             </div>
             <div class="grid mb">
@@ -195,7 +195,7 @@
                   <h2>Golden <span>Dream</span></h2>
                   <p>WebVR piece with music by Dana Leong. Premiered at NakedHub Shanghai Launch Party.</p>
                   <a href="golden.html" target="_blank">View more</a>
-                </figcaption>     
+                </figcaption>
               </figure>
               <figure class="effect-bubba">
                 <img src="assets/img/disco.jpg" alt="life after dark"/>
@@ -203,11 +203,11 @@
                   <h2>Life <span>After</span> Dark</h2>
                   <p>WebVR piece with music by Dana Leong. Premiered at NakedHub Shanghai Launch Party.</p>
                   <a href="lifeafterdark.html" target="_blank">View more</a>
-                </figcaption>     
-              </figure>              
-            </div>                
-          </div>  
+                </figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
-       
+
     </body>
 </html>
